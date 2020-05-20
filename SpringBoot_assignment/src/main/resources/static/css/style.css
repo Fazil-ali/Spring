@@ -1,0 +1,101 @@
+.grid-container header {
+  display: grid;
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  grid-gap: 10px;
+}
+
+
+.grid {
+  display: grid;
+  border: 2px blue ;
+  height: 50px;
+  width:500px;
+  grid-template-columns: 50% 40% 30% 20% 40% 40%;
+  grid-row-gap :50px;
+  grid-column-gap:1px;
+
+}
+
+
+.box {
+  background-color:white;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+  color: black;
+  border-radius: 5px;
+  border: 2px black solid;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.head {
+   background-color:#69f0ae;
+   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+   color: black;
+   border-radius: 5px;
+   border: 2px black solid;
+   text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.body{
+  background-color:#263238;
+}
+.productList{
+
+  color: #69f0ae;
+  max-width: 100px;
+  position: relative;
+}
+
+.gc{
+
+ position: relative;
+  margin: 0px 10px;
+
+}
+
+.header{
+
+  background-color:#69f0ae;
+  max-width: 2000px;
+  height: 150px;
+}
+.btnm{
+
+  margin: 0px 10px;
+}
+
+.btnc{
+
+  background-color:#008080 !important;
+  font-color:#263238;
+
+}
+
+
+.logout{
+
+float:right;
+
+}
+.b{
+
+float:right;
+
+}
+
+.list{
+float:left;
+}
+
+
+
+
+
+

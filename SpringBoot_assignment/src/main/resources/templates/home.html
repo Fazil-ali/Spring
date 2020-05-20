@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+</head>
+
+
+<body style="background-color:#263238;">
+
+        <div style="  background-color:#69f0ae;
+             max-width: 2000px; height: 150px;">
+
+            <h1>Welcome </h1>
+
+            <b><hr></b>
+
+            <p style="display:inline">
+
+                <b>Currently logged in username:</b>
+
+                <b> <div sec:authentication="name" style="display:inline" > </div><br></b>
+
+               <b> Role(s):</b>
+
+                <div sec:authentication="principal.authorities" style="display:inline"></div>
+
+            </p>
+
+        </div>
+
+        <br><br>
+
+        <div  >
+
+            <div sec:authorize="hasRole('MANAGER')" style="display:inline;" >
+
+                <p class="list">
+
+                    <a th:href="@{/products/list}"
+                       class="btn btn-info btn-sm mb-3 btnm  btnc ">Products List</a>
+                </p>
+            </div>
+
+            <form th:action="@{/logout}" method="POST" class="logout">
+                <input type="submit" value="Logout"   class="btn btn-info btn-sm mb-3 btnm btnc "/>
+            </form>
+
+        </div>
+
+        <div class="container">
+
+
+
+            <div class="productList" th:object="${productName}" style="display:inline;">
+
+
+                <a th:href="@{/products/home}"
+                class="btn btn-info btn-sm mb-3 btnc" >Home</a>
+
+
+
+                <form th:action="@{/products/name/user}" method="get" style="display:inline;">
+
+                    <select class="btn btn-info btn-sm mb-3 btnc" id="courierTasks" style="display:inline;" name="productName">
+                        <option value="" disabled selected>Choose a Product</option>
+                        <option value="Oven">Oven</option>
+                        <option value="Refrigerator">Refrigerator</option>
+                        <option value="Cooler">Cooler</option>
+                        <option value="TV">TV</option>
+                        <option value="AC">AC</option>
+                        <option value="Washing Machine">Washing Machine</option>
+                        <option th:each="theProductName : ${productName}"
+                                th:value="${theProductName}"
+                                th:text="${theProductName}">
+                        </option>
+                    </select>
+
+                    <input type="hidden"/>
+                    <button class="btn btn-info btn-sm mb-3 btnc"  style="display:inline;" type="submit">Filter</button>
+
+                </form>
+
+            </div><br>
+
+            <div class="grid-container gc">
+                <br>
+                <div class="grid heading">
+
+                    <div class="head a"><p>Product Name</p></div>
+                    <div class="head b"><p>Product Brand</p></div>
+                    <div class="head c"><p>Product Price</p></div>
+                    <div class="head d"><p>Quantity</p></div>
+                    <div class="head e"><p>Product Model</p></div>
+
+
+                </div>
+
+                <div class="grid" th:each="tempProduct : ${products}">
+
+                    <div class="box a">
+                        <p th:text="${tempProduct.productName}"></p>
+                    </div>
+
+                    <div class="box b">
+                        <p th:text="${tempProduct.productBrand}"></p>
+                    </div>
+
+                    <div class="box c">
+                        <p th:text="${tempProduct.productPrice}"></p>
+                    </div>
+
+                    <div class="box d">
+                        <p th:text="${tempProduct.quantity}"></p>
+                    </div>
+
+                    <div class="box e">
+                        <p th:text="${tempProduct.productModel}"></p>
+                    </div>
+
+
+                </div>
+                <br><br><br>
+
+            </div>
+        </div>
+        <br><br>
+
+</body>
+
+</html>

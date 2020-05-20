@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ProductId Not Found</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+</head>
+<body>
+
+    <h1>Error</h1>
+
+    <hr>
+
+    <h2>OOPS!!!!!</h2>
+
+    <div class="alert alert-danger" role="alert" style="display:inline;">
+        Did Not found Id :
+        <span th:text="${productId}" style="display:inline;"></span>
+    </div>
+
+
+</body>
+
+</html>
