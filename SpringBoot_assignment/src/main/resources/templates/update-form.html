@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Update Product</title>
+
+</head>
+
+
+<body>
+        <div class="container">
+            <br>
+            <h2>Update Product</h2>
+            <br>
+            <form action="#" th:action="@{/products/processForm}"
+                     th:object="${product}" method="post">
+
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="text" th:field="*{productName}" placeholder="Product Name(*)"
+                           class="form-control mb-4 col-4">
+
+                    <input type="text" th:field="*{productBrand}" placeholder="Product Brand(*)"
+                           class="form-control mb-4 col-4">
+
+                    <input type="text" th:field="*{productPrice}" placeholder="Product price(*)"
+                            class="form-control mb-4 col-4">
+
+                     <input type="text" th:field="*{quantity}" placeholder="Product Quantity(*)"
+                       class="form-control mb-4 col-4">
+                      <input type="text" th:field="*{productModel}" placeholder="Product Model(*)"
+                       class="form-control mb-4 col-4">
+
+
+
+                    <br><br>
+
+                     <button type="submit" class="btn btn-info col-2">Save</button>
+
+            </form>
+
+            <hr>
+
+            <a th:href="@{/products/list}" class="btn btn-info btn-sm" >&#9194; </a>
+
+        </div>
+
+
+</body>
+
+</html>

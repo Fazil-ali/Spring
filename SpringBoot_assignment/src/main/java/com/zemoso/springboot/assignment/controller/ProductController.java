@@ -3,10 +3,13 @@ package com.zemoso.springboot.assignment.controller;
 import com.zemoso.springboot.assignment.entity.Product;
 import com.zemoso.springboot.assignment.entity.ProductDTO;
 import com.zemoso.springboot.assignment.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,6 +21,8 @@ import java.util.List;
 public class ProductController {
 
     private ProductService productService;
+
+    private Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     public ProductController(ProductService productService){
@@ -80,7 +85,7 @@ public class ProductController {
 
             model.addAttribute("product", product);
 
-            return "product-form";
+            return "update-form";
 
     }
 
@@ -150,6 +155,23 @@ public class ProductController {
         model.addAttribute("products",productDTOList);
 
         return "home";
+    }
+
+    @PostMapping("/processForm")
+    public String processForm(
+            @Valid @ModelAttribute("product") Product product,
+            BindingResult theBindingResult) {
+        logger.info("Processing product form");
+
+        if (theBindingResult.hasErrors()) {
+            return "product-form";
+        }
+        else {
+            productService.save(product);
+            logger.info(">>>>>>>>>>>>>"+product.toString());
+            logger.info("Product saved");
+            return "confirmation";
+        }
     }
 
 
