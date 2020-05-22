@@ -32,19 +32,19 @@ public class Product {
     @Column(name="product_brand")
     private String productBrand;
 
-    @NotNull(message = "enter the price")
+    @NotNull(message = "is required")
     @Min(value=1000,message="Minimun should be 1000")
     @Column(name="product_price")
     private double productPrice;
 
 
-    @NotNull(message = "Required")
+    @NotNull(message = "is required")
     @Min(value=1,message="Minimun should be 1")
     @Column(name="quantity")
     private int quantity;
 
-    @NotNull(message = "Required")
-    @Pattern(regexp="^[A-Z0-9\\-]{7}", message="should have  chars and nums")
+    @NotNull(message = "is required")
+    @Pattern(regexp="^[A-Z0-9\\-]{7}", message="should have Uppercase characters and numbers")
     @Column(name="product_model")
     private String productModel;
 

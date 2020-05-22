@@ -34,6 +34,7 @@ public class ProductController {
     private ConverterClass converter;
 
 
+
     @GetMapping("/list")
     public String listProducts(Model model){
 
@@ -111,7 +112,6 @@ public class ProductController {
             productDTOList.add(converter.convertToDTO(product));
         }
 
-
         model.addAttribute("products",productDTOList);
 
         return "list-products";
@@ -133,7 +133,7 @@ public class ProductController {
 
         model.addAttribute("products",productDTOList);
 
-        return "home";
+        return "product-home";
 
 
     }
@@ -154,24 +154,64 @@ public class ProductController {
 
         model.addAttribute("products",productDTOList);
 
-        return "home";
+        return "product-home";
     }
 
     @PostMapping("/processForm")
-    public String processForm(
-            @Valid @ModelAttribute("product") Product product,
-            BindingResult theBindingResult) {
-        logger.info("Processing product form");
+    public String processForm(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult) {
 
-        if (theBindingResult.hasErrors()) {
-            return "product-form";
+            logger.info("Processing product form");
+
+
+            if (bindingResult.hasErrors()) {
+
+                return "product-form";
+
+            }
+
+            else {
+
+                productService.save(product);
+
+                logger.info(">>>>>>>>>>>>>"+product.toString());
+
+                logger.info("Product saved");
+
+                return "confirmation";
+            }
+    }
+
+    @GetMapping("/buy")
+    public String buyproduct(@RequestParam("productId") int productId, Model model){
+
+        Product product=productService.findById(productId);
+
+        int quantity=product.getQuantity();
+
+        logger.info(">>>>>>"+quantity);
+
+        quantity=quantity-1;
+
+        if(quantity<1){
+
+            return "quantity-error";
         }
-        else {
-            productService.save(product);
-            logger.info(">>>>>>>>>>>>>"+product.toString());
-            logger.info("Product saved");
-            return "confirmation";
-        }
+
+        product.setQuantity(quantity);
+
+        model.addAttribute("product", product);
+
+        productService.save(product);
+
+
+        return "confirm-purchase";
+
+
+
+
+
+
+
     }
 
 

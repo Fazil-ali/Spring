@@ -98,6 +98,7 @@
                     <div class="head c"><p>Product Price</p></div>
                     <div class="head d"><p>Quantity</p></div>
                     <div class="head e"><p>Product Model</p></div>
+                    <div class="head e"><p>Action</p></div>
 
 
                 </div>
@@ -123,6 +124,13 @@
                     <div class="box e">
                         <p th:text="${tempProduct.productModel}"></p>
                     </div>
+
+                    <div class="box f">
+
+                        <a th:href="@{/products/buy(productId=${tempProduct.id})}"
+                           class="btn btn-info btn-sm btnm">
+                            Buy
+                        </a>
 
 
                 </div>
